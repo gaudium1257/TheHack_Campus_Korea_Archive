@@ -45,7 +45,12 @@ export function SiteFooter() {
         </div>
         <div className="site-footer__bottom">
           <span>THE해커톤 : CAMPUS · {site.chapter} 지부</span>
-          <span>{site.term}</span>
+          <span className="site-footer__end">
+            <span>{site.term}</span>
+            <a href="#top" className="to-top">
+              맨 위로 ↑
+            </a>
+          </span>
         </div>
       </div>
     </footer>

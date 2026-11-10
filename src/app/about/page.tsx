@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SectionNav } from "@/components/SectionNav";
 
 export const metadata: Metadata = {
   title: "소개",
@@ -23,7 +24,16 @@ export default function AboutPage() {
         </div>
       </header>
 
-      <section className="section" style={{ borderTop: 0, paddingTop: 0 }}>
+      <SectionNav
+        items={[
+          { id: "mission", label: "무엇을 하나요" },
+          { id: "programs", label: "세 가지 프로그램" },
+          { id: "curriculum", label: "커리큘럼" },
+          { id: "network", label: "함께하는 사람들" },
+        ]}
+      />
+
+      <section className="section" id="mission" style={{ borderTop: 0 }}>
         <div className="container section__grid">
           <div className="section__head">
             <span className="eyebrow">Mission</span>
@@ -42,7 +52,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" id="programs">
         <div className="container section__grid">
           <div className="section__head">
             <span className="eyebrow">Programs</span>
@@ -71,7 +81,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" id="curriculum">
         <div className="container section__grid">
           <div className="section__head">
             <span className="eyebrow">Curriculum</span>
@@ -117,7 +127,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" id="network">
         <div className="container section__grid">
           <div className="section__head">
             <span className="eyebrow">Network</span>
