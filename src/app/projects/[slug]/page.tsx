@@ -86,13 +86,17 @@ export default async function ProjectPage({ params }: Props) {
             <dd>{when ? when.date : "—"}</dd>
           </div>
           <div>
-            <dt>사용한 것</dt>
+            <dt>키워드</dt>
             <dd>
-              <span className="chips">
-                {project.tags.map((t) => (
-                  <span className="chip" key={t}>{t}</span>
-                ))}
-              </span>
+              {project.tags.length > 0 ? (
+                <span className="chips">
+                  {project.tags.map((t) => (
+                    <span className="chip" key={t}>{t}</span>
+                  ))}
+                </span>
+              ) : (
+                "—"
+              )}
             </dd>
           </div>
         </dl>

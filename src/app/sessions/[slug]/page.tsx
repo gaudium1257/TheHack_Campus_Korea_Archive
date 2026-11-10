@@ -174,6 +174,7 @@ export default async function SessionPage({ params }: Props) {
           <div className="section__head" style={{ marginBottom: 28 }}>
             <span className="eyebrow">Slides</span>
             <h2>당일 슬라이드</h2>
+            {session.slides.note && <p className="slides__note">{session.slides.note}</p>}
           </div>
           <SlideStrip pages={slidePages(session)} title={session.title} pdf={session.slides.pdf} />
         </div>

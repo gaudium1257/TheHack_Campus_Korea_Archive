@@ -13,7 +13,7 @@ function Person({ member }: { member: Member }) {
   return (
     <li className="person" id={member.name}>
       <span className="person__name">{member.name}</span>
-      <span className="person__major">{member.major}</span>
+      {member.major && <span className="person__major">{member.major}</span>}
       {member.duty && <span className="person__duty">{member.duty}</span>}
       {works.length > 0 ? (
         <ul className="person__works">

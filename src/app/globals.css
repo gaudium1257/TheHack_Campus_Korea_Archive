@@ -1128,6 +1128,13 @@ a {
   gap: 16px;
   flex-wrap: wrap;
 }
+.slides__note {
+  max-width: 52ch !important;
+  padding-left: 12px;
+  border-left: 1px solid var(--line-2);
+  color: var(--fg-3) !important;
+  font-size: var(--t-xs) !important;
+}
 .slides__track {
   display: grid;
   grid-auto-flow: column;
