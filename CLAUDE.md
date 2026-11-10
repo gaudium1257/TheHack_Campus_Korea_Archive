@@ -14,6 +14,7 @@ THE해커톤 : CAMPUS 고려대학교 지부의 공식 아카이브 사이트. �
 - 데이터는 `src/content/` 아래 TypeScript 파일: `sessions.ts`, `members.ts`, `projects.ts`, 타입은 `types.ts`
 - 데이터 조회와 표기 함수는 `src/lib/archive.ts`에 모읍니다. 페이지에서 배열을 직접 거르지 말고 여기 함수를 씁니다
 - 동적 경로(`/sessions/[slug]`, `/projects/[slug]`)는 `generateStaticParams` + `dynamicParams = false`
+- 결과물 상세는 `demoUrl`을 iframe(`LiveEmbed`)으로 띄웁니다. 빌드 때 `src/lib/embed.ts`가 사이트의 X-Frame-Options·CSP를 확인해 막힌 사이트는 표지로 대신합니다. 강제로 끄려면 결과물에 `embed: false`
 - 세션 슬라이드: `public/sessions/<slug>/slides.pdf`와 `slides/p-01.jpg …` (1600px, `pdftoppm`으로 생성. 방법은 README)
 
 ## 세션 기록의 사실관계

@@ -68,4 +68,6 @@ export type Project = {
   /** public/ 아래 스크린샷 경로. 예: "/projects/02/anam-weather.jpg" (16:10 권장) */
   image?: string;
   tags: string[];
+  /** 상세 페이지에 사이트를 직접 띄울지. 기본은 자동 판단(사이트가 허용하면 띄움). false면 띄우지 않음 */
+  embed?: boolean;
 };
