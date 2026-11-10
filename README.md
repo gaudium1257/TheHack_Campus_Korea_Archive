@@ -34,12 +34,12 @@ npm run build    # 배포 전 확인
   members: ["김민서"],              // members.ts의 이름과 똑같이
   demoUrl: "https://anam-weather.vercel.app",       // 선택
   repoUrl: "https://github.com/…",                  // 선택
-  image: "/projects/03/anam-weather.jpg",           // 선택, public/ 아래. 16:10 권장
+  image: "/projects/03/anam-weather.jpg",           // 선택. 비우면 사이트 첫 화면이 썸네일
   tags: ["기상청 API", "Next.js"],
 },
 ```
 
-스크린샷이 없으면 카탈로그 번호와 제목으로 만든 표지가 대신 들어갑니다. 카탈로그 번호(`S03-01`)는 세션 안에서 적은 순서대로 자동으로 붙습니다.
+카드 썸네일과 상세 페이지에는 `demoUrl`의 사이트가 그대로 뜹니다. 사이트가 다른 페이지 안에 들어가는 것을 막아 두었거나 `embed: false`이면, 카탈로그 번호와 제목으로 만든 표지가 대신 들어갑니다. 직접 고른 스크린샷을 썸네일로 쓰고 싶을 때만 `image`를 적습니다. 카탈로그 번호(`S03-01`)는 세션 안에서 적은 순서대로 자동으로 붙습니다.
 
 ### 세션 추가 (`src/content/sessions.ts`)
 

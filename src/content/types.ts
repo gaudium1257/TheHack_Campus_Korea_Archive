@@ -65,7 +65,8 @@ export type Project = {
   members: string[];
   demoUrl?: string;
   repoUrl?: string;
-  /** public/ 아래 스크린샷 경로. 예: "/projects/02/anam-weather.jpg" (16:10 권장) */
+  /** public/ 아래 스크린샷 경로. 예: "/projects/02/anam-weather.jpg" (16:10 권장).
+   *  비워 두면 카드 썸네일에 사이트 첫 화면을 그대로 띄웁니다. 직접 고른 이미지를 쓰고 싶을 때만 적습니다 */
   image?: string;
   tags: string[];
   /** 상세 페이지에 사이트를 직접 띄울지. 기본은 자동 판단(사이트가 허용하면 띄움). false면 띄우지 않음 */
