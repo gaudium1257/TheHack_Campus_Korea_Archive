@@ -4,6 +4,7 @@ import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import "./globals.css";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { themeInitScript } from "@/components/ThemeToggle";
 import { site } from "@/content/site";
 
 const plexMono = localFont({
@@ -43,7 +44,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ko" className={plexMono.variable}>
+    <html lang="ko" className={plexMono.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
         <a className="skip-link" href="#main">
           본문으로 건너뛰기
