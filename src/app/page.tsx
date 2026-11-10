@@ -28,7 +28,7 @@ export default function HomePage() {
             <em>만드는</em> 사람들
           </h1>
           <p className="hero__lead">
-            고대에서 시작해, 세상에 내놓을 것을 만듭니다. 정규 세션의 기록과 학회원이 직접 만들고 배포한 서비스를 이곳에 남깁니다.
+            고려대에서 시작해, 세상에 내놓을 것을 만듭니다. 정규 세션의 기록과 학회원이 직접 만들고 배포한 서비스를 이곳에 남깁니다.
           </p>
           <dl className="facts">
             <div>
@@ -173,7 +173,7 @@ export default function HomePage() {
         <div className="horizon horizon--low" />
         <div className="container closing__inner">
           <span className="eyebrow eyebrow--rose">Korea University · Builders</span>
-          <h2>고대에서 만들고, 캠퍼스 밖에서 증명합니다</h2>
+          <h2>고려대에서 만들고, 캠퍼스 밖에서 증명합니다</h2>
           <p>다음으로 보여줄 결과물은, 여러분 것입니다.</p>
         </div>
       </section>

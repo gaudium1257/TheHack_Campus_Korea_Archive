@@ -9,7 +9,7 @@ export const sessions: Session[] = [
     label: "OT",
     code: "S00",
     title: "신입 구성원 오리엔테이션",
-    subtitle: "고대에서 시작해, 세상에 내놓을 것을 만듭니다",
+    subtitle: "고려대에서 시작해, 세상에 내놓을 것을 만듭니다",
     heldAt: "2026-10-05T18:30",
     format: "전체 · 활동 소개와 시작 준비",
     summary:
