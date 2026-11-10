@@ -92,6 +92,16 @@ main {
   flex: 1;
 }
 
+/* 가로로 넘치는 요소가 있어도 페이지가 옆으로 밀리지 않게 막습니다.
+   html의 overflow는 화면(viewport)에 적용되고, body는 clip이라 스크롤 영역이 생기지 않아 고정 머리글(sticky)도 그대로 동작합니다 */
+html {
+  overflow-x: hidden;
+}
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
 h1,
 h2,
 h3,
@@ -881,6 +891,7 @@ a {
   aspect-ratio: 16 / 10;
   max-width: 100%;
   overflow: hidden;
+  clip-path: inset(0);
   border: 1px solid var(--line);
   background: var(--ink-2);
 }
@@ -1731,6 +1742,7 @@ a {
   background: var(--crimson-2);
 }
 .live__stage {
+  overflow: hidden;
   border: 1px solid var(--line-2);
   background:
     radial-gradient(80% 60% at 50% 100%, rgba(143, 20, 49, 0.22), transparent 70%),
@@ -1740,6 +1752,8 @@ a {
 }
 .live__viewport {
   position: relative;
+  overflow: hidden;
+  clip-path: inset(0);
   width: 100%;
   height: min(78vh, 820px);
   transition: width 0.4s var(--ease);
@@ -1757,7 +1771,10 @@ a {
 .live__viewport iframe {
   position: absolute;
   inset: 0;
-  width: 100%;
+  /* 아이폰 Safari는 iframe을 안쪽 사이트 폭만큼 늘리려 하므로 1px + min-width로 폭을 고정합니다 */
+  width: 1px;
+  min-width: 100%;
+  max-width: 100%;
   height: 100%;
   border: 0;
   background: transparent;
@@ -1799,21 +1816,34 @@ a {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  clip-path: inset(0);
+}
+/* 1280×800 고정 틀. 사이트가 이보다 커지려 해도 이 안에서 잘립니다 */
+.live-thumb__frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 800px;
+  overflow: hidden;
+  transform-origin: 0 0;
+  pointer-events: none;
 }
 .live-thumb__cover {
   position: absolute;
   inset: 0;
 }
 .live-thumb iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: block;
+  width: 1px;
+  min-width: 100%;
+  max-width: 100%;
+  height: 100%;
   border: 0;
-  transform-origin: 0 0;
   pointer-events: none;
   background: transparent;
   opacity: 0;
-  transition: opacity 0.5s var(--ease), transform 0.6s var(--ease);
+  transition: opacity 0.5s var(--ease);
 }
 .live-thumb iframe[data-loaded="true"] {
   opacity: 1;

@@ -48,21 +48,22 @@ export function LiveThumb({ url, children }: { url: string; children: React.Reac
     <div ref={ref} className="live-thumb">
       {!loaded && <div className="live-thumb__cover">{children}</div>}
       {visible && scale > 0 && (
-        <iframe
-          src={url}
-          title=""
-          aria-hidden="true"
-          tabIndex={-1}
-          loading="lazy"
-          scrolling="no"
-          referrerPolicy="strict-origin-when-cross-origin"
-          sandbox="allow-scripts allow-same-origin"
-          width={FRAME_W}
-          height={FRAME_H}
-          style={{ transform: `scale(${scale})` }}
-          onLoad={() => setLoaded(true)}
-          data-loaded={loaded}
-        />
+        <div className="live-thumb__frame" style={{ transform: `scale(${scale})` }}>
+          <iframe
+            src={url}
+            title=""
+            aria-hidden="true"
+            tabIndex={-1}
+            loading="lazy"
+            scrolling="no"
+            referrerPolicy="strict-origin-when-cross-origin"
+            sandbox="allow-scripts allow-same-origin"
+            width={FRAME_W}
+            height={FRAME_H}
+            onLoad={() => setLoaded(true)}
+            data-loaded={loaded}
+          />
+        </div>
       )}
     </div>
   );
