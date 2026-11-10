@@ -1,0 +1,57 @@
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
+import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+import "./globals.css";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { site } from "@/content/site";
+
+const plexMono = localFont({
+  src: [
+    { path: "../fonts/ibm-plex-mono-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/ibm-plex-mono-latin-500-normal.woff2", weight: "500", style: "normal" },
+  ],
+  variable: "--font-plex-mono",
+  display: "swap",
+});
+
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "http://localhost:3000";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${site.name} · ${site.chapter}`,
+    template: `%s · ${site.shortName}`,
+  },
+  description: site.description,
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName: site.name,
+    title: `${site.tagline} · ${site.name}`,
+    description: site.description,
+    images: [{ url: "/og.jpg", width: 1600, height: 900 }],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0d0709",
+  colorScheme: "dark",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="ko" className={plexMono.variable}>
+      <body>
+        <a className="skip-link" href="#main">
+          본문으로 건너뛰기
+        </a>
+        <SiteHeader />
+        <main id="main">{children}</main>
+        <SiteFooter />
+      </body>
+    </html>
+  );
+}
