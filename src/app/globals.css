@@ -302,7 +302,6 @@ a {
   min-height: var(--header-h);
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 24px;
   flex-wrap: wrap;
 }
@@ -340,6 +339,39 @@ a {
   display: flex;
   gap: clamp(16px, 2.6vw, 36px);
   font-size: 0.9375rem;
+  margin-left: auto;
+}
+
+/* 밝은·어두운 화면 전환 버튼 */
+.theme-toggle {
+  appearance: none;
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--line-2);
+  background: transparent;
+  color: var(--fg-2);
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.theme-toggle:hover {
+  color: var(--fg);
+  border-color: var(--fg-3);
+}
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+.theme-toggle .icon-moon {
+  display: none;
+}
+:root[data-theme="light"] .theme-toggle .icon-sun {
+  display: none;
+}
+:root[data-theme="light"] .theme-toggle .icon-moon {
+  display: block;
 }
 .site-nav a {
   position: relative;
@@ -371,9 +403,15 @@ a {
     gap: 12px;
   }
   .site-nav {
+    order: 3;
     width: 100%;
+    margin-left: 0;
     justify-content: space-between;
     font-size: 0.875rem;
+  }
+  .theme-toggle {
+    order: 2;
+    margin-left: auto;
   }
 }
 
@@ -1693,4 +1731,50 @@ a {
 .live-thumb iframe[data-loaded="true"] {
   opacity: 1;
   background: #fff;
+}
+
+/* ---------- 밝은 화면 ----------
+   기본은 위의 어두운 화면이고, 머리글의 전환 버튼으로 data-theme="light"가 붙으면 아래 값으로 바뀝니다. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --ink-0: #f8f4f3;
+  --ink-1: #f1ebea;
+  --ink-2: #e9e1e0;
+  --ink-3: #ded4d3;
+  --line: #e2d8d7;
+  --line-2: #cbbbbb;
+  --fg: #1c0f13;
+  --fg-2: #4e3d43;
+  --fg-3: #7e6970;
+  --crimson: #8f1431;
+  --crimson-2: #a71a3c;
+  --rose: #b22447;
+  --rose-dim: rgba(178, 36, 71, 0.12);
+}
+:root[data-theme="light"] .button--primary,
+:root[data-theme="light"] .live__open {
+  color: #fff;
+}
+:root[data-theme="light"] .horizon::before {
+  background: radial-gradient(closest-side, rgba(178, 36, 71, 0.1), transparent 72%);
+}
+:root[data-theme="light"] .horizon::after {
+  border-top-color: rgba(178, 36, 71, 0.35);
+  background: radial-gradient(ellipse 60% 22% at 50% 0%, rgba(178, 31, 66, 0.16), rgba(143, 20, 49, 0.05) 55%, transparent 80%);
+}
+:root[data-theme="light"] .cover {
+  background:
+    radial-gradient(120% 80% at 50% 120%, rgba(178, 31, 66, 0.22), transparent 60%),
+    linear-gradient(180deg, var(--ink-1), var(--ink-2));
+}
+:root[data-theme="light"] .session-head__cover {
+  box-shadow: 0 30px 60px -36px rgba(60, 10, 25, 0.45);
+}
+:root[data-theme="light"] .challenge {
+  background: linear-gradient(90deg, rgba(143, 20, 49, 0.1), rgba(143, 20, 49, 0.02));
+}
+:root[data-theme="light"] .live__stage {
+  background:
+    radial-gradient(80% 60% at 50% 100%, rgba(143, 20, 49, 0.08), transparent 70%),
+    var(--ink-1);
 }

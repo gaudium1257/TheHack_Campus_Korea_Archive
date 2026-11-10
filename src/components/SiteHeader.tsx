@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { site } from "@/content/site";
+import { ThemeToggle } from "./ThemeToggle";
 import { Wordmark } from "./Wordmark";
 
 const NAV = [
@@ -35,6 +36,7 @@ export function SiteHeader() {
               );
             })}
           </nav>
+          <ThemeToggle />
         </div>
       </header>
     </>
