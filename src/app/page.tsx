@@ -23,7 +23,7 @@ export default function HomePage() {
         <div className="container hero__inner">
           <span className="eyebrow eyebrow--rose">THE해커톤 : CAMPUS · {site.chapter} 지부 아카이브</span>
           <h1 className="hero__title">
-            고대,
+            고려대,
             <br />
             <em>만드는</em> 사람들
           </h1>

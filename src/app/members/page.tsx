@@ -15,7 +15,7 @@ export default function MembersPage() {
         <div className="horizon horizon--low" />
         <div className="container page-head__inner">
           <span className="eyebrow eyebrow--rose">People · {staff.length + members.length}</span>
-          <h1>고대, 만드는 사람들</h1>
+          <h1>고려대, 만드는 사람들</h1>
           <p>전공과 경험에 상관없이 직접 만들어 보고 싶은 사람들이 모였습니다. 각자 세션에서 만든 결과물이 이름 아래에 쌓입니다.</p>
         </div>
       </header>
