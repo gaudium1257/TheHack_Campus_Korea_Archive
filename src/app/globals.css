@@ -393,17 +393,23 @@ a {
 .site-nav a:hover {
   color: var(--fg);
 }
-.site-nav a[aria-current="page"] {
+.site-nav {
+  position: relative;
+}
+.site-nav a[aria-current] {
   color: var(--fg);
 }
-.site-nav a[aria-current="page"]::after {
-  content: "";
+/* 현재 메뉴 밑줄. 홈에서는 스크롤에 따라 메뉴 사이를 미끄러져 이동합니다 */
+.site-nav__bar {
   position: absolute;
   left: 0;
-  right: 0;
-  bottom: -1px;
+  bottom: 0;
   height: 1px;
+  width: 0;
   background: var(--rose);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s var(--ease), width 0.4s var(--ease), opacity 0.25s var(--ease);
 }
 @media (max-width: 640px) {
   .site-header {
@@ -1858,4 +1864,45 @@ a {
   background:
     radial-gradient(80% 60% at 50% 100%, rgba(143, 20, 49, 0.08), transparent 70%),
     var(--ink-1);
+}
+
+/* ---------- 홈: 학회원 · 소개 요약 ---------- */
+
+.people--compact {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 168px), 1fr));
+}
+.person--compact {
+  padding: 0;
+  min-height: 0;
+}
+.person--compact a {
+  display: grid;
+  gap: 2px;
+  padding: 16px 18px 18px;
+  height: 100%;
+  transition: background-color 0.2s var(--ease);
+}
+.person--compact a:hover {
+  background: var(--ink-1);
+}
+.person--compact .person__name {
+  font-size: var(--t-md);
+}
+.person--compact .person__major {
+  font-size: var(--t-xs);
+}
+.person__count {
+  margin-top: 8px;
+  font-size: var(--t-xs);
+  color: var(--fg-3);
+}
+.home-about {
+  display: grid;
+  gap: 40px;
+}
+.home-about__lead {
+  font-size: var(--t-md);
+  line-height: 1.85;
+  color: var(--fg-2);
+  max-width: 40em;
 }

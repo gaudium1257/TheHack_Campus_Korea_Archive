@@ -1,37 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import type { Member } from "@/content/types";
-import { getMembers, getProjectCode, getProjectsByMember } from "@/lib/archive";
+import { PersonCard } from "@/components/PersonCard";
+import { getMembers } from "@/lib/archive";
 
 export const metadata: Metadata = {
   title: "학회원",
   description: "THE해커톤 : CAMPUS 고려대 지부 운영진과 학회원.",
 };
-
-function Person({ member }: { member: Member }) {
-  const works = getProjectsByMember(member.name);
-  return (
-    <li className="person" id={member.name}>
-      <span className="person__name">{member.name}</span>
-      {member.major && <span className="person__major">{member.major}</span>}
-      {member.duty && <span className="person__duty">{member.duty}</span>}
-      {works.length > 0 ? (
-        <ul className="person__works">
-          {works.map((p) => (
-            <li key={p.slug}>
-              <Link href={`/projects/${p.slug}`}>
-                <span className="mono">{getProjectCode(p)}</span>
-                {p.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        member.role === "학회원" && <span className="person__none">결과물 정리 중</span>
-      )}
-    </li>
-  );
-}
 
 export default function MembersPage() {
   const { staff, members } = getMembers();
@@ -56,7 +30,7 @@ export default function MembersPage() {
           <div className="section__body">
             <ul className="people">
               {staff.map((m) => (
-                <Person key={m.name} member={m} />
+                <PersonCard key={m.name} member={m} />
               ))}
             </ul>
           </div>
@@ -73,7 +47,7 @@ export default function MembersPage() {
           <div className="section__body">
             <ul className="people">
               {members.map((m) => (
-                <Person key={m.name} member={m} />
+                <PersonCard key={m.name} member={m} />
               ))}
             </ul>
           </div>
