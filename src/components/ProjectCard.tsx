@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/content/types";
 import { getProjectCode, getSession } from "@/lib/archive";
+import { checkEmbeddable } from "@/lib/embed";
+import { LiveThumb } from "./LiveThumb";
 
 export function ProjectCover({ project, large = false }: { project: Project; large?: boolean }) {
   return (
@@ -12,16 +14,24 @@ export function ProjectCover({ project, large = false }: { project: Project; lar
   );
 }
 
+/** 썸네일 우선순위: 직접 넣은 이미지 → 사이트 첫 화면 → 표지 */
+async function Thumbnail({ project }: { project: Project }) {
+  if (project.image) {
+    return <Image src={project.image} alt="" width={1280} height={800} sizes="(max-width: 700px) 100vw, 400px" />;
+  }
+  const cover = <ProjectCover project={project} />;
+  if (project.demoUrl && project.embed !== false && (await checkEmbeddable(project.demoUrl)) !== "blocked") {
+    return <LiveThumb url={project.demoUrl}>{cover}</LiveThumb>;
+  }
+  return cover;
+}
+
 export function ProjectCard({ project, showSession = true }: { project: Project; showSession?: boolean }) {
   const session = getSession(project.session);
   return (
     <article className="project-card">
       <div className="project-card__media">
-        {project.image ? (
-          <Image src={project.image} alt="" width={1280} height={800} sizes="(max-width: 700px) 100vw, 400px" />
-        ) : (
-          <ProjectCover project={project} />
-        )}
+        <Thumbnail project={project} />
       </div>
       <div className="project-card__body">
         <span className="project-card__code">
