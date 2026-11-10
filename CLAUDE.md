@@ -40,6 +40,7 @@ THE해커톤 : CAMPUS 고려대학교 지부의 공식 아카이브 사이트. �
 - 새 화면은 데스크톱(1440)과 모바일(390)에서 가로 스크롤이 생기지 않는지 확인합니다
 - 같은 페이지 안 이동은 부드럽게 스크롤합니다(`html.smooth-scroll`의 CSS `scroll-behavior`, 첫 로딩 뒤에만 켜짐, "동작 줄이기"면 꺼짐). 페이지 간 이동은 `data-scroll-behavior="smooth"`로 Next가 바로 이동시킵니다. 긴 페이지에는 `SectionNav`(섹션 메뉴, 밑줄이 현재 섹션을 따라감)를 달고 각 섹션에 `id`를 줍니다
 - 홈은 한 페이지 구성입니다: 히어로 → `#sessions` → `#works` → `#members` → `#about` → 마무리. 상단 메뉴(`SiteHeader`의 `NAV`)는 `/#섹션`을 가리켜 홈에서는 그 섹션까지 부드럽게 스크롤하고 밑줄이 따라가며, 다른 페이지에서는 홈의 그 위치로 바로 이동합니다. `/sessions`·`/projects`·`/members`·`/about`은 "전체 보기" 페이지로 남아 있고, 그 페이지에 있을 때 해당 메뉴가 활성으로 표시됩니다
+- 맨 위로 이동은 `src/lib/scroll.ts`의 `scrollToPageTop()`을 씁니다(오른쪽 아래 `BackToTop` 버튼, 홈에서 로고 클릭). 홈에서 `Link href="/"`를 Next에 맡기면 본문 시작점까지만 올라가 머리글 높이만큼 덜 올라가므로 직접 처리합니다
 
 ## 다음 단계 (예정)
 

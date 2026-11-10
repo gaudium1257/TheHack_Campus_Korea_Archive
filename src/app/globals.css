@@ -1906,3 +1906,78 @@ a {
   color: var(--fg-2);
   max-width: 40em;
 }
+
+/* ---------- 맨 위로 버튼 ---------- */
+
+.back-to-top {
+  position: fixed;
+  z-index: 45;
+  right: calc(env(safe-area-inset-right, 0px) + clamp(16px, 2.4vw, 32px));
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(16px, 2.4vw, 32px));
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ink-1) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--fg);
+  cursor: pointer;
+  box-shadow: 0 12px 32px -14px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transform: translateY(18px) scale(0.92);
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease), transform 0.45s var(--ease), background-color 0.2s var(--ease);
+}
+.back-to-top[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  background: var(--crimson);
+  color: #fff;
+}
+.back-to-top:hover .back-to-top__arrow {
+  transform: translateY(-2px);
+}
+.back-to-top__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.back-to-top__track,
+.back-to-top__progress {
+  fill: none;
+  stroke-width: 1.5;
+}
+.back-to-top__track {
+  stroke: var(--line-2);
+}
+.back-to-top__progress {
+  stroke: var(--rose);
+  transition: stroke-dashoffset 0.15s linear;
+}
+.back-to-top:hover .back-to-top__progress {
+  stroke: #fff;
+}
+.back-to-top__arrow {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.25s var(--ease);
+}
+:root[data-theme="light"] .back-to-top {
+  box-shadow: 0 12px 28px -16px rgba(60, 10, 25, 0.4);
+}
+@media (max-width: 640px) {
+  .back-to-top {
+    width: 46px;
+    height: 46px;
+  }
+}
