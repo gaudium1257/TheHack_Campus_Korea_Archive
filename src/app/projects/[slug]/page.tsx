@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { LiveEmbed } from "@/components/LiveEmbed";
 import { ProjectCover } from "@/components/ProjectCard";
 import { projects } from "@/content/projects";
 import { formatHeldAt, getMember, getProject, getProjectCode, getSession, hostOf } from "@/lib/archive";
+import { checkEmbeddable } from "@/lib/embed";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -29,6 +31,14 @@ export default async function ProjectPage({ params }: Props) {
   if (!project) notFound();
   const session = getSession(project.session);
   const when = formatHeldAt(session?.heldAt ?? null);
+  const canEmbed =
+    project.demoUrl !== undefined && project.embed !== false && (await checkEmbeddable(project.demoUrl)) !== "blocked";
+
+  const still = project.image ? (
+    <Image src={project.image} alt={`${project.title} 화면`} width={1600} height={1000} priority sizes="(max-width: 1240px) 100vw, 1240px" />
+  ) : (
+    <ProjectCover project={project} large />
+  );
 
   return (
     <>
@@ -57,13 +67,11 @@ export default async function ProjectPage({ params }: Props) {
           )}
         </header>
 
-        <div className="project-shot">
-          {project.image ? (
-            <Image src={project.image} alt={`${project.title} 화면`} width={1600} height={1000} priority sizes="(max-width: 1240px) 100vw, 1240px" />
-          ) : (
-            <ProjectCover project={project} large />
-          )}
-        </div>
+        {canEmbed && project.demoUrl ? (
+          <LiveEmbed url={project.demoUrl} title={project.title} host={hostOf(project.demoUrl)} fallback={<ProjectCover project={project} large />} />
+        ) : (
+          <div className="project-shot">{still}</div>
+        )}
 
         <dl className="spec" style={{ marginTop: 40 }}>
           <div>
