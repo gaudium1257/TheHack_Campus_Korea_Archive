@@ -8,7 +8,6 @@ export const members: Member[] = [
   { name: "안희성", major: "경영학과", role: "운영진", duty: "지부 운영 · 개발 교육" },
 
   { name: "고세영", major: "인공지능학과", role: "학회원" },
-  { name: "김도현", major: "경영학과", role: "학회원" },
   { name: "고우민", major: "스마트보안학부", role: "학회원" },
   { name: "김경범", major: "스마트보안학부", role: "학회원" },
   { name: "김상후", major: "컴퓨터학과", role: "학회원" },
