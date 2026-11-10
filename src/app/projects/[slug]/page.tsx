@@ -6,11 +6,13 @@ import { LiveEmbed } from "@/components/LiveEmbed";
 import { ProjectCover } from "@/components/ProjectCard";
 import { projects } from "@/content/projects";
 import { formatHeldAt, getMember, getProject, getProjectCode, getSession, hostOf } from "@/lib/archive";
-import { checkEmbeddable } from "@/lib/embed";
+import { checkEmbeddable, shouldEmbed } from "@/lib/embed";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export const dynamicParams = false;
+// 한 시간마다 다시 만들어 사이트 상태(오류·임베드 허용)를 새로 확인합니다
+export const revalidate = 3600;
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -31,8 +33,8 @@ export default async function ProjectPage({ params }: Props) {
   if (!project) notFound();
   const session = getSession(project.session);
   const when = formatHeldAt(session?.heldAt ?? null);
-  const canEmbed =
-    project.demoUrl !== undefined && project.embed !== false && (await checkEmbeddable(project.demoUrl)) !== "blocked";
+  const status = project.demoUrl ? await checkEmbeddable(project.demoUrl) : null;
+  const canEmbed = project.demoUrl !== undefined && project.embed !== false && status !== null && shouldEmbed(status);
 
   const still = project.image ? (
     <Image src={project.image} alt={`${project.title} 화면`} width={1600} height={1000} priority sizes="(max-width: 1240px) 100vw, 1240px" />
@@ -71,6 +73,9 @@ export default async function ProjectPage({ params }: Props) {
           <LiveEmbed url={project.demoUrl} title={project.title} host={hostOf(project.demoUrl)} fallback={<ProjectCover project={project} large />} />
         ) : (
           <div className="project-shot">{still}</div>
+        )}
+        {status === "unavailable" && (
+          <p className="notice">지금은 서비스가 오류를 내고 있어 화면을 띄우지 않았습니다. 서비스가 복구되면 자동으로 다시 표시됩니다.</p>
         )}
 
         <dl className="spec" style={{ marginTop: 40 }}>

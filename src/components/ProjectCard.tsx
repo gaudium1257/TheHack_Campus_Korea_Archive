@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/content/types";
 import { getProjectCode, getSession } from "@/lib/archive";
-import { checkEmbeddable } from "@/lib/embed";
+import { checkEmbeddable, shouldEmbed } from "@/lib/embed";
 import { LiveThumb } from "./LiveThumb";
 
 export function ProjectCover({ project, large = false }: { project: Project; large?: boolean }) {
@@ -20,7 +20,7 @@ async function Thumbnail({ project }: { project: Project }) {
     return <Image src={project.image} alt="" width={1280} height={800} sizes="(max-width: 700px) 100vw, 400px" />;
   }
   const cover = <ProjectCover project={project} />;
-  if (project.demoUrl && project.embed !== false && (await checkEmbeddable(project.demoUrl)) !== "blocked") {
+  if (project.demoUrl && project.embed !== false && shouldEmbed(await checkEmbeddable(project.demoUrl))) {
     return <LiveThumb url={project.demoUrl}>{cover}</LiveThumb>;
   }
   return cover;
