@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { scrollToPageTop } from "@/lib/scroll";
 
 /** 슬라이드의 선으로 그린 THE 로고를 단순화한 표시 */
 export function TheMark({ className }: { className?: string }) {
@@ -14,8 +18,19 @@ export function TheMark({ className }: { className?: string }) {
 }
 
 export function Wordmark() {
+  const pathname = usePathname();
   return (
-    <Link href="/" className="wordmark" aria-label="THE해커톤 CAMPUS 아카이브 홈">
+    <Link
+      href="/"
+      className="wordmark"
+      aria-label="THE해커톤 CAMPUS 아카이브 홈"
+      onClick={(e) => {
+        // 홈에서는 Next의 이동 대신 직접 맨 위(0)까지 올립니다. Next는 본문 시작점까지만 올려 머리글 높이만큼 덜 올라가기 때문
+        if (pathname !== "/") return;
+        e.preventDefault();
+        scrollToPageTop();
+      }}
+    >
       <TheMark className="wordmark__the" />
       <span className="wordmark__text">
         <span className="wordmark__name">해커톤 : CAMPUS</span>
