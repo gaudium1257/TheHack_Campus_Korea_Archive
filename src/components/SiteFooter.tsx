@@ -11,7 +11,7 @@ export function SiteFooter() {
         <div className="site-footer__top">
           <div>
             <TheMark className="wordmark__the" />
-            <p className="site-footer__statement">고대에서 만들고, 캠퍼스 밖에서 증명합니다.</p>
+            <p className="site-footer__statement">고려대에서 만들고, 캠퍼스 밖에서 증명합니다.</p>
           </div>
           <div className="site-footer__cols">
             <div>
