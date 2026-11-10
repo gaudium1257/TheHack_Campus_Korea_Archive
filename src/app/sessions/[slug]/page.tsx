@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { EmptyProjects, ProjectCard } from "@/components/ProjectCard";
+import { SectionNav } from "@/components/SectionNav";
 import { SlideStrip } from "@/components/SlideStrip";
 import { sessions } from "@/content/sessions";
 import { formatHeldAt, getAdjacentSessions, getProjectsBySession, getSession, slidePages } from "@/lib/archive";
@@ -61,6 +62,17 @@ export default async function SessionPage({ params }: Props) {
         </div>
       </header>
 
+      <SectionNav
+        items={[
+          { id: "overview", label: "개요" },
+          { id: "agenda", label: "다룬 내용" },
+          ...(session.practice ? [{ id: "practice", label: "실습" }] : []),
+          ...(session.checklist ? [{ id: "criteria", label: "확인 기준" }] : []),
+          { id: "slides", label: "슬라이드" },
+          ...(session.collectsProjects ? [{ id: "works", label: `결과물 ${works.length}` }] : []),
+        ]}
+      />
+
       <div className="container">
         <dl className="spec">
           <div>
@@ -86,7 +98,7 @@ export default async function SessionPage({ params }: Props) {
         </dl>
       </div>
 
-      <section className="section" style={{ borderTop: 0 }}>
+      <section className="section" id="overview" style={{ borderTop: 0 }}>
         <div className="container section__grid">
           <div className="section__head">
             <span className="eyebrow">Overview</span>
@@ -98,7 +110,7 @@ export default async function SessionPage({ params }: Props) {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" id="agenda">
         <div className="container section__grid">
           <div className="section__head section__head--sticky">
             <span className="eyebrow">Agenda</span>
@@ -121,7 +133,7 @@ export default async function SessionPage({ params }: Props) {
       </section>
 
       {session.practice && (
-        <section className="section">
+        <section className="section" id="practice">
           <div className="container section__grid">
             <div className="section__head section__head--sticky">
               <span className="eyebrow">Practice</span>
@@ -151,7 +163,7 @@ export default async function SessionPage({ params }: Props) {
       )}
 
       {session.checklist && (
-        <section className="section">
+        <section className="section" id="criteria">
           <div className="container section__grid">
             <div className="section__head">
               <span className="eyebrow">Criteria</span>
@@ -172,7 +184,7 @@ export default async function SessionPage({ params }: Props) {
         </section>
       )}
 
-      <section className="section">
+      <section className="section" id="slides">
         <div className="container">
           <div className="section__head" style={{ marginBottom: 28 }}>
             <span className="eyebrow">Slides</span>

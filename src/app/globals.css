@@ -44,6 +44,7 @@
   --page-max: 1240px;
   --gutter: clamp(20px, 4vw, 48px);
   --header-h: 68px;
+  --section-nav-h: 49px;
   --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
 }
 
@@ -58,7 +59,17 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-padding-top: calc(var(--header-h) + 24px);
+  scroll-padding-top: calc(var(--header-h) + var(--section-nav-h) + 24px);
+}
+/* 섹션 메뉴가 있는 페이지에서만 그 높이만큼 더 띄웁니다 */
+html:not(:has(.section-nav)) {
+  --section-nav-h: 0px;
+}
+/* 메뉴·링크로 같은 페이지 안을 이동할 때 부드럽게. 첫 로딩 뒤에만 켜고(layout의 스크립트), 동작 줄이기 설정이면 끕니다 */
+@media (prefers-reduced-motion: no-preference) {
+  html.smooth-scroll {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -415,6 +426,65 @@ a {
   }
 }
 
+/* ---------- 섹션 메뉴 ---------- */
+
+.section-nav {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 30;
+  background: color-mix(in srgb, var(--ink-0) 95%, transparent);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border-bottom: 1px solid var(--line);
+}
+.section-nav ul {
+  position: relative;
+  display: flex;
+  gap: clamp(18px, 2.4vw, 32px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.section-nav ul::-webkit-scrollbar {
+  display: none;
+}
+.section-nav li {
+  flex: none;
+}
+.section-nav a {
+  display: block;
+  padding-block: 14px;
+  font-size: var(--t-sm);
+  color: var(--fg-3);
+  white-space: nowrap;
+  transition: color 0.25s var(--ease);
+}
+.section-nav a:hover {
+  color: var(--fg-2);
+}
+.section-nav a[aria-current="location"] {
+  color: var(--fg);
+}
+.section-nav__bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 0;
+  background: var(--rose);
+  opacity: 0;
+  transition: transform 0.4s var(--ease), width 0.4s var(--ease), opacity 0.2s var(--ease);
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  /* 모바일은 머리글이 고정되지 않으므로 섹션 메뉴만 위에 붙습니다 */
+  html {
+    scroll-padding-top: calc(var(--section-nav-h) + 16px);
+  }
+  .section-nav {
+    top: 0;
+  }
+}
+
 /* ---------- 바닥글 ---------- */
 
 .site-footer {
@@ -456,6 +526,17 @@ a {
   line-height: 2.1;
 }
 .site-footer__cols a:hover {
+  color: var(--rose);
+}
+.site-footer__end {
+  display: inline-flex;
+  gap: 24px;
+}
+.to-top {
+  color: var(--fg-2);
+  transition: color 0.2s var(--ease);
+}
+.to-top:hover {
   color: var(--rose);
 }
 .site-footer__bottom {

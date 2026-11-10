@@ -17,7 +17,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   return (
     <>
-      <div className="masthead-strip">
+      <div className="masthead-strip" id="top">
         <div className="container">
           <span>THE해커톤 : CAMPUS · {site.chapter}</span>
           <span className="hide-sm">Archive {site.termCode}</span>
@@ -30,7 +30,18 @@ export function SiteHeader() {
             {NAV.map((item) => {
               const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
               return (
-                <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined}>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
+                  onClick={(e) => {
+                    // 지금 보고 있는 페이지의 메뉴를 다시 누르면 맨 위로 부드럽게 (globals.css의 scroll-behavior를 따름)
+                    if (pathname === item.href) {
+                      e.preventDefault();
+                      window.scrollTo({ top: 0 });
+                    }
+                  }}
+                >
                   {item.label}
                 </Link>
               );

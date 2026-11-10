@@ -5,6 +5,9 @@ import "./globals.css";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { themeInitScript } from "@/components/ThemeToggle";
+
+// 처음 열 때(주소에 #섹션이 있어도) 화면이 쭉 굴러가지 않도록, 첫 화면이 다 뜬 뒤에 부드러운 스크롤을 켭니다
+const smoothScrollInitScript = `window.addEventListener("load",function(){requestAnimationFrame(function(){document.documentElement.classList.add("smooth-scroll")})});`;
 import { site } from "@/content/site";
 
 const plexMono = localFont({
@@ -44,9 +47,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ko" className={plexMono.variable} suppressHydrationWarning>
+    <html lang="ko" className={plexMono.variable} data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: smoothScrollInitScript }} />
       </head>
       <body>
         <a className="skip-link" href="#main">
