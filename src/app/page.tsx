@@ -4,6 +4,9 @@ import { SessionRegister } from "@/components/SessionRegister";
 import { site } from "@/content/site";
 import { getProjects, getSessions, getStats } from "@/lib/archive";
 
+// 결과물 카드의 사이트 상태를 한 시간마다 새로 확인합니다
+export const revalidate = 3600;
+
 export default function HomePage() {
   const stats = getStats();
   const sessions = getSessions();

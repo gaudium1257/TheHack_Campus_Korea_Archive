@@ -3,6 +3,9 @@ import { EmptyProjects, ProjectCard } from "@/components/ProjectCard";
 import { ProjectBrowser } from "@/components/ProjectBrowser";
 import { getProjects, getProjectsBySession, getSessions } from "@/lib/archive";
 
+// 결과물 카드의 사이트 상태를 한 시간마다 새로 확인합니다
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "결과물",
   description: "THE해커톤 : CAMPUS 고려대 지부 학회원이 세션에서 만들고 배포한 서비스.",

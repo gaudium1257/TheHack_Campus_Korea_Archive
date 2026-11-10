@@ -7,6 +7,9 @@ import { SlideStrip } from "@/components/SlideStrip";
 import { sessions } from "@/content/sessions";
 import { formatHeldAt, getAdjacentSessions, getProjectsBySession, getSession, slidePages } from "@/lib/archive";
 
+// 결과물 카드의 사이트 상태를 한 시간마다 새로 확인합니다
+export const revalidate = 3600;
+
 type Props = { params: Promise<{ slug: string }> };
 
 export const dynamicParams = false;
