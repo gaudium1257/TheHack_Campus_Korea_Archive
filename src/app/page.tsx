@@ -81,7 +81,7 @@ export default function HomePage() {
               </div>
             ) : (
               <EmptyProjects title="결과물을 정리하고 있습니다">
-                2회차와 3회차에 학회원이 만든 서비스를 모으는 중입니다. 정리되는 대로 세션별로 이곳에 올라옵니다.
+                학회원이 만든 서비스를 모으는 중입니다. 정리되는 대로 세션별로 이곳에 올라옵니다.
               </EmptyProjects>
             )}
           </div>

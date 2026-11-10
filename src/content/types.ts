@@ -35,6 +35,8 @@ export type Session = {
     /** public/ 아래 슬라이드 이미지 폴더. p-01.jpg, p-02.jpg … */
     imageDir: string;
     pageCount: number;
+    /** 슬라이드 내용이 실제 진행과 다를 때 붙이는 안내 */
+    note?: string;
   };
   /** 학회원 결과물을 받는 세션인지 (OT는 false) */
   collectsProjects: boolean;
@@ -42,7 +44,8 @@ export type Session = {
 
 export type Member = {
   name: string;
-  major: string;
+  /** 모르면 비워 둡니다. 화면에 표시하지 않습니다 */
+  major?: string;
   role: "운영진" | "학회원";
   /** 운영진의 담당. 예: "개발 교육" */
   duty?: string;
@@ -56,7 +59,7 @@ export type Project = {
   title: string;
   /** 카드에 들어가는 한 줄 소개 */
   summary: string;
-  /** 상세 페이지 본문. 문단은 빈 줄로 구분 */
+  /** 상세 페이지 본문. 문단은 빈 줄로 구분. 제출자가 자랑하고 싶은 내용을 여기에 */
   description?: string;
   /** members.ts의 name과 똑같이 */
   members: string[];

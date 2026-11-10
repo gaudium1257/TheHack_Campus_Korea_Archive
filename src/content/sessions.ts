@@ -106,7 +106,12 @@ export const sessions: Session[] = [
       { title: "보안", body: "RLS가 켜져 있고, secret 키가 코드에 없는가" },
       { title: "도전", body: "로그인 또는 실시간 반영까지 붙였는가 (선택)" },
     ],
-    slides: { pdf: "/sessions/02/slides.pdf", imageDir: "/sessions/02/slides", pageCount: 14 },
+    slides: {
+      pdf: "/sessions/02/slides.pdf",
+      imageDir: "/sessions/02/slides",
+      pageCount: 14,
+      note: "슬라이드에 적힌 회차(3회차)와 지난 세션 정보는 실제 진행과 다릅니다. 이 세션은 정규 세션 2회차이며, 그 전의 정규 세션은 휴회했습니다.",
+    },
     collectsProjects: true,
   },
   {
@@ -156,7 +161,12 @@ export const sessions: Session[] = [
       { title: "외부 데이터", body: "API 또는 크롤링으로 바깥 데이터를 1개 이상 불러오는가" },
       { title: "배포", body: "API 키를 Vercel 환경변수에 두고, 링크로 접속되는가" },
     ],
-    slides: { pdf: "/sessions/03/slides.pdf", imageDir: "/sessions/03/slides", pageCount: 13 },
+    slides: {
+      pdf: "/sessions/03/slides.pdf",
+      imageDir: "/sessions/03/slides",
+      pageCount: 13,
+      note: "슬라이드에 적힌 회차(4회차, 지난 세션 3회차)는 실제 진행과 다릅니다. 이 세션은 정규 세션 3회차이고, 지난 세션은 2회차입니다.",
+    },
     collectsProjects: true,
   },
 ];
