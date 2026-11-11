@@ -53,7 +53,8 @@ export function getProjectCode(project: Project): string {
 export function getMembers(): { staff: Member[]; members: Member[] } {
   const byName = (a: Member, b: Member) => a.name.localeCompare(b.name, "ko");
   return {
-    staff: members.filter((m) => m.role === "운영진").sort(byName),
+    // 운영진은 members.ts에 적힌 순서 그대로, 학회원은 가나다순
+    staff: members.filter((m) => m.role === "운영진"),
     members: members.filter((m) => m.role === "학회원").sort(byName),
   };
 }
