@@ -3,9 +3,10 @@ import type { Member } from "./types";
 // OT(2026.10.05) 기준 명단. 이름과 학과는 공개에 동의된 정보만 적습니다. 연락처는 적지 않습니다.
 
 export const members: Member[] = [
+  // 운영진은 여기 적힌 순서대로 보입니다. 학회원은 가나다순으로 자동 정렬됩니다.
+  { name: "안희성", major: "경영학과", role: "운영진", duty: "지부 운영 · 개발 교육" },
   { name: "김민서", major: "컴퓨터학과", role: "운영진", duty: "개발 교육" },
   { name: "김태호", major: "컴퓨터학과", role: "운영진", duty: "개발 교육" },
-  { name: "안희성", major: "경영학과", role: "운영진", duty: "지부 운영 · 개발 교육" },
 
   { name: "고세영", major: "인공지능학과", role: "학회원" },
   { name: "고우민", major: "스마트보안학부", role: "학회원" },
