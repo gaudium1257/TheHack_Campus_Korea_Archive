@@ -49,6 +49,8 @@ export type Member = {
   role: "운영진" | "학회원";
   /** 운영진의 담당. 예: "개발 교육" */
   duty?: string;
+  /** 본인이 공개한 포트폴리오·GitHub 등. 이름 오른쪽에 작은 ↗ 버튼으로 보입니다. 연락처는 넣지 않습니다 */
+  link?: { url: string; label: string };
 };
 
 export type Project = {

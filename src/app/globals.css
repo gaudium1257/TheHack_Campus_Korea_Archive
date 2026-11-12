@@ -1485,6 +1485,32 @@ a {
   border-bottom: 1px solid var(--line);
   min-height: 150px;
 }
+.person__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.person__link {
+  position: relative;
+  z-index: 1;
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--line-2);
+  border-radius: 50%;
+  color: var(--fg-3);
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+.person__link svg {
+  width: 10px;
+  height: 10px;
+}
+.person__link:hover {
+  color: var(--rose);
+  border-color: var(--rose);
+  background: var(--rose-dim);
+}
 .person__name {
   font-size: var(--t-lg);
   font-weight: 650;
@@ -1902,18 +1928,19 @@ a {
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 168px), 1fr));
 }
 .person--compact {
-  padding: 0;
-  min-height: 0;
-}
-.person--compact a {
-  display: grid;
-  gap: 2px;
+  position: relative;
   padding: 16px 18px 18px;
-  height: 100%;
+  min-height: 0;
+  gap: 2px;
   transition: background-color 0.2s var(--ease);
 }
-.person--compact a:hover {
+.person--compact:hover {
   background: var(--ink-1);
+}
+.person__cover-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
 .person--compact .person__name {
   font-size: var(--t-md);
