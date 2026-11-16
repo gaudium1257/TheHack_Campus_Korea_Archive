@@ -142,4 +142,35 @@ export const projects: Project[] = [
     demoUrl: "https://my-api-project-gilt.vercel.app/",
     tags: ["API", "크롤링", "한국 기상"],
   },
+  {
+    slug: "rift-ping",
+    session: "03",
+    title: "Rift ping",
+    summary: "Riot Games API로 친구가 게임을 시작하거나 끝내면 디스코드로 알려주고, 전적도 볼 수 있는 서비스입니다.",
+    members: ["김재우"],
+    demoUrl: "https://rift-ping-lol.futurecaper2.chatgpt.site",
+    tags: ["API", "Riot Games API", "디스코드"],
+  },
+  {
+    slug: "anam-run",
+    session: "03",
+    title: "뛰어? 말아?",
+    summary: "내 걷기·뛰기 속도를 미리 입력해 두면, 지하철 도착까지 남은 시간에 맞춰 얼마나 빨리 가야 하는지 알려줍니다.",
+    description:
+      "지도 앱의 \"도보 n분\"은 사람마다 실제로 걸리는 시간이 다르고, n분 남았을 때 정확히 얼마나 서둘러야 하는지는 알려주지 않습니다. 그 아쉬움에서 시작해 사용자별 걷는 속도와 뛰는 속도를 입력받고, 서울시 실시간 지하철 도착정보로 필요한 속도를 계산해 보여줍니다.\n\n운영진 김태호에게 잘 만들었다는 칭찬을 들었습니다.",
+    members: ["김상후"],
+    demoUrl: "https://anam-run.vercel.app/",
+    tags: ["API", "서울시 실시간 지하철 도착정보"],
+  },
+  {
+    slug: "insider-buy-kr",
+    session: "03",
+    title: "인사이더 바이 KR",
+    summary: "미국 SEC 내부자 거래 공시(Form 4)에서 임원의 장내 매수만 골라 한국어와 원화로 보여주고, 주목도 점수 TOP 5로 정리합니다.",
+    description:
+      "미국 임원 자사주 매수 시그널을 한국어로 볼 수 있게 만든 서비스입니다. SEC EDGAR의 Form 4 최신 공시 피드에서 공시별 XML 본문을 수집해 파싱하고, open.er-api.com으로 달러를 원화로 바꾸며, Google 뉴스 RSS로 종목별 최근 기사를 함께 보여줍니다.",
+    members: ["안희성"],
+    demoUrl: "https://insider-buy-kr.vercel.app/",
+    tags: ["API", "크롤링", "SEC EDGAR", "환율 API", "Google 뉴스 RSS"],
+  },
 ];
